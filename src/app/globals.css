@@ -1,26 +1,58 @@
+/* =============================================================================
+ * GLOBAL STYLES + TAILWIND V4 THEME TOKENS
+ * =============================================================================
+ * This file defines the bridge between runtime CSS custom properties
+ * (injected by the tenant layout) and Tailwind utility classes.
+ *
+ * HOW IT WORKS:
+ * 1. The tenant layout sets --color-primary, --color-secondary, etc.
+ *    as inline styles on a wrapper <div>.
+ * 2. The @theme inline block below tells Tailwind v4 to map those
+ *    CSS variables to its utility class system.
+ * 3. Now `bg-primary` resolves to `background-color: var(--color-primary)`,
+ *    which dynamically adapts per tenant — no rebuild needed.
+ *
+ * FALLBACK VALUES:
+ * The :root block provides sensible defaults so pages render correctly
+ * even without a tenant context (e.g., the root "/" page).
+ * ========================================================================== */
+
 @import "tailwindcss";
 
+/* -- Default CSS Custom Properties ---------------------------------------- */
+/* These are overridden per-tenant by inline styles on the tenant layout.    */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #3b82f6;
+  --color-secondary: #1e293b;
+  --color-accent: #f59e0b;
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --font-tenant: "Inter", sans-serif;
 }
 
+/* -- Tailwind v4 Theme Token Registration --------------------------------- */
+/* @theme inline tells Tailwind to generate utilities from these variables.  */
+/* e.g., bg-primary → background-color: var(--color-primary)                */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --font-sans: var(--font-tenant);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -- Base Styles ---------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  /* Ensure the background defaults to dark in dark mode before React hydrates */
+  background-color: var(--color-background);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-tenant), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
