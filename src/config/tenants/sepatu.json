@@ -1,0 +1,117 @@
+{
+  "name": "Shoes Co.",
+  "slug": "shoes",
+  "description": "Premium handcrafted sneakers for the modern urbanite.",
+  "theme": {
+    "light": {
+      "primary": "#EA580C",
+      "secondary": "#E2E8F0",
+      "accent": "#F59E0B",
+      "background": "#FFFFFF",
+      "foreground": "#0F172A"
+    },
+    "dark": {
+      "primary": "#F97316",
+      "secondary": "#1E293B",
+      "accent": "#FBBF24",
+      "background": "#0F172A",
+      "foreground": "#F8FAFC"
+    },
+    "fontFamily": "'Inter', sans-serif"
+  },
+  "layout": {
+    "heroStyle": "centered",
+    "navbarStyle": "center",
+    "featuresStyle": "grid",
+    "collectionStyle": "grid",
+    "aboutStyle": "split",
+    "footerStyle": "standard"
+  },
+  "navigation": [
+    { "label": "Home", "href": "#home" },
+    { "label": "Features", "href": "#features" },
+    { "label": "Collection", "href": "#collection" },
+    { "label": "About Us", "href": "#about" }
+  ],
+  "hero": {
+    "title": "Step Into the Future",
+    "subtitle": "Handcrafted sneakers designed for comfort, built for style. Every pair tells a story.",
+    "ctaText": "Shop Collection",
+    "ctaHref": "/collection",
+    "imageUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80"
+  },
+  "features": {
+    "title": "Uncompromising Quality",
+    "subtitle": "Discover why our sneakers stand out in the crowded urban landscape.",
+    "items": [
+      {
+        "title": "Premium Materials",
+        "description": "Sourced from the finest local tanneries to ensure maximum durability and comfort."
+      },
+      {
+        "title": "Ergonomic Design",
+        "description": "Engineered for the natural arch of your foot, providing all-day support."
+      },
+      {
+        "title": "Breathable Mesh",
+        "description": "Advanced ventilation technology keeps your feet cool under any circumstance."
+      },
+      {
+        "title": "Lightweight Sole",
+        "description": "Shock-absorbing clouds beneath your feet that won't weigh you down."
+      }
+    ]
+  },
+  "collection": {
+    "title": "Latest Arrivals",
+    "subtitle": "Discover our newest handcrafted sneakers.",
+    "items": [
+      {
+        "id": "item-1",
+        "name": "Urban Runner V1",
+        "price": "$120",
+        "imageUrl": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&q=80"
+      },
+      {
+        "id": "item-2",
+        "name": "Classic High Top",
+        "price": "$140",
+        "imageUrl": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&q=80"
+      },
+      {
+        "id": "item-3",
+        "name": "Street Low Profile",
+        "price": "$110",
+        "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&q=80"
+      },
+      {
+        "id": "item-4",
+        "name": "Performance Trainer",
+        "price": "$160",
+        "imageUrl": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&q=80"
+      }
+    ]
+  },
+  "about": {
+    "title": "Our Story",
+    "heading": "Crafting the perfect step since 2018.",
+    "description": [
+      "We believe that a great pair of shoes is more than just footwear—it's a foundation for confidence, expression, and movement. What started as a small workshop evaluating premium materials has grown into a community of urban explorers.",
+      "Every stitch, contour, and sole is meticulously designed to balance modern aesthetics with uncompromising comfort. We don't just make sneakers; we engineer companions for your daily journey."
+    ],
+    "imageUrl": "https://images.unsplash.com/photo-1618365908648-e71bd5716cba?w=800&q=80",
+    "stats": [
+      { "label": "Pairs Sold", "value": "50K+" },
+      { "label": "Design Awards", "value": "12" },
+      { "label": "Happy Souls", "value": "100%" }
+    ]
+  },
+  "footer": {
+    "companyName": "Sepatu Co. Ltd.",
+    "contactEmail": "hello@sepatu.co",
+    "socialLinks": [
+      { "platform": "Instagram", "url": "https://instagram.com" },
+      { "platform": "Twitter", "url": "https://twitter.com" }
+    ]
+  }
+}
