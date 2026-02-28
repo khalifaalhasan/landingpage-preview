@@ -217,6 +217,142 @@ function AboutStory({ content, theme }: { content: TenantAboutContent; theme?: T
   );
 }
 
+// -- Variant: UMKM ------------------------------------------------------------
+// Immersive full-width background image layout, returning to the visual weight 
+// of the Hero after the solid-color Features section.
+
+function AboutUmkmMobile({ content }: { content: TenantAboutContent }) {
+  return (
+    <section id="about" className="relative py-24 min-h-[80vh] flex items-center overflow-hidden z-10">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      </div>
+      
+      <div className="relative z-10 container mx-auto px-6 text-center text-white flex flex-col items-center">
+        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-semibold text-xs uppercase tracking-wide border border-white/20 mb-6">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          {content.title}
+        </span>
+        
+        <h2 className="text-4xl font-black leading-tight tracking-tight mb-8">
+          {content.heading}
+        </h2>
+        
+        <div className="space-y-6 text-base text-white/80 leading-relaxed text-left max-w-lg mx-auto">
+          {content.description.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
+        </div>
+
+        {content.stats && content.stats.length > 0 && (
+          <div className="w-full mt-12 grid grid-cols-2 gap-6 pt-12 border-t border-white/20">
+            {content.stats.map((stat, idx) => (
+              <div key={idx} className="space-y-1">
+                <span className="block text-4xl font-black text-primary drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]">{stat.value}</span>
+                <span className="block text-xs font-semibold text-white/70 uppercase tracking-wider">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function AboutUmkmTablet({ content }: { content: TenantAboutContent }) {
+  return (
+    <section id="about" className="relative py-32 min-h-[70vh] flex items-center overflow-hidden z-10">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
+      </div>
+      
+      <div className="relative z-10 container mx-auto px-8 max-w-3xl text-center text-white flex flex-col items-center">
+        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-semibold text-sm uppercase tracking-wide border border-white/20 mb-8">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          {content.title}
+        </span>
+        
+        <h2 className="text-5xl font-black leading-tight tracking-tight mb-10">
+          {content.heading}
+        </h2>
+        
+        <div className="space-y-6 text-lg text-white/80 leading-relaxed text-left">
+          {content.description.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
+        </div>
+
+        {content.stats && content.stats.length > 0 && (
+          <div className="w-full mt-12 grid grid-cols-3 gap-8 pt-12 border-t border-white/20">
+            {content.stats.map((stat, idx) => (
+              <div key={idx} className="space-y-2">
+                <span className="block text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]">{stat.value}</span>
+                <span className="block text-sm font-semibold text-white/70 uppercase tracking-wider">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function AboutUmkmDesktop({ content }: { content: TenantAboutContent }) {
+  return (
+    <section id="about" className="relative py-32 min-h-[80vh] flex items-center overflow-hidden z-10">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-l from-black/90 via-black/70 to-transparent" />
+      </div>
+      
+      <div className="relative z-10 container mx-auto px-12 flex justify-end">
+        <div className="max-w-2xl text-white">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white font-semibold text-sm uppercase tracking-wide border border-white/20 mb-8">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            {content.title}
+          </span>
+          
+          <h2 className="text-6xl font-black leading-tight tracking-tight mb-10">
+            {content.heading}
+          </h2>
+          
+          <div className="space-y-6 text-xl text-white/80 leading-relaxed bg-black/20 p-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl">
+            {content.description.map((paragraph, idx) => (
+              <p key={idx}>{paragraph}</p>
+            ))}
+          </div>
+
+          {content.stats && content.stats.length > 0 && (
+            <div className="mt-12 grid grid-cols-3 gap-8">
+              {content.stats.map((stat, idx) => (
+                <div key={idx} className="space-y-2 p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <span className="block text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(var(--color-primary),0.5)]">{stat.value}</span>
+                  <span className="block text-sm font-semibold text-white/70 uppercase tracking-wider">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutUmkm({ content }: { content: TenantAboutContent }) {
+  const device = useDeviceViewport();
+  if (device === "mobile") return <AboutUmkmMobile content={content} />;
+  if (device === "tablet") return <AboutUmkmTablet content={content} />;
+  return <AboutUmkmDesktop content={content} />;
+}
+
 // -- Component Map ------------------------------------------------------------
 
 const ABOUT_VARIANTS: Record<
@@ -225,6 +361,7 @@ const ABOUT_VARIANTS: Record<
 > = {
   split: AboutSplit,
   story: AboutStory,
+  umkm: AboutUmkm,
 };
 
 // -- Default Fallback ---------------------------------------------------------

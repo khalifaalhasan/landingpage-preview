@@ -231,11 +231,127 @@ function FeaturesList({ content, variant }: FeaturesProps) {
   return <FeaturesListDesktop content={content} variant={variant} />;
 }
 
+// -- Variant: UMKM ------------------------------------------------------------
+// Solid brand color background to alternate with Hero's image background.
+
+function FeaturesUmkmMobile({ content }: FeaturesProps) {
+  if (!content || !content.items) return null;
+
+  return (
+    <section id="features" className="py-20 relative z-10 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-6">
+        <div className="text-center mx-auto mb-12 space-y-4">
+          <h2 className="text-4xl font-black tracking-tight">
+            {content.title}
+          </h2>
+          <p className="text-lg opacity-80">
+            {content.subtitle}
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-6">
+          {content.items.map((item, index) => {
+            const IconComponent = ICONS[index % ICONS.length];
+            return (
+              <div key={index} className="p-8 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col items-start">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/20 mb-6">
+                  <IconComponent className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                <p className="opacity-80 leading-relaxed text-sm text-white">{item.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturesUmkmTablet({ content }: FeaturesProps) {
+  if (!content || !content.items) return null;
+
+  return (
+    <section id="features" className="py-24 relative z-10 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-8">
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <h2 className="text-5xl font-black tracking-tight">
+            {content.title}
+          </h2>
+          <p className="text-xl opacity-80">
+            {content.subtitle}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-8">
+          {content.items.map((item, index) => {
+            const IconComponent = ICONS[index % ICONS.length];
+            return (
+              <div key={index} className="p-8 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col items-start">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/20 mb-6">
+                  <IconComponent className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                <p className="opacity-80 leading-relaxed text-sm text-white">{item.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturesUmkmDesktop({ content }: FeaturesProps) {
+  if (!content || !content.items) return null;
+
+  return (
+    <section id="features" className="py-24 relative z-10 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-12">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <h2 className="text-5xl font-black tracking-tight">
+            {content.title}
+          </h2>
+          <p className="text-lg opacity-80">
+            {content.subtitle}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-4 gap-6">
+          {content.items.map((item, index) => {
+            const IconComponent = ICONS[index % ICONS.length];
+            return (
+              <div 
+                key={index}
+                className="group relative p-8 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-500 overflow-hidden flex flex-col items-start"
+              >
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/20 mb-6 group-hover:scale-110 transition-transform duration-500">
+                  <IconComponent className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                <p className="opacity-80 leading-relaxed text-sm text-white">
+                  {item.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturesUmkm({ content, variant }: FeaturesProps) {
+  const device = useDeviceViewport();
+  if (device === "mobile") return <FeaturesUmkmMobile content={content} variant={variant} />;
+  if (device === "tablet") return <FeaturesUmkmTablet content={content} variant={variant} />;
+  return <FeaturesUmkmDesktop content={content} variant={variant} />;
+}
+
 // -- Component Map ------------------------------------------------------------
 
 const FEATURES_VARIANTS: Record<TenantLayout["featuresStyle"], React.FC<FeaturesProps>> = {
   grid: FeaturesGrid,
   list: FeaturesList,
+  umkm: FeaturesUmkm,
 };
 
 const DEFAULT_VARIANT: TenantLayout["featuresStyle"] = "grid";

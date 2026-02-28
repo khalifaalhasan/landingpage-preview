@@ -270,6 +270,106 @@ function HeroMinimal({ content }: { content: TenantHeroContent }) {
   );
 }
 
+// -- Variant: UMKM ------------------------------------------------------------
+// Full-width background image with text overlaid. Designed for high-impact
+// alternating sections typical in SME (UMKM) profiles.
+
+function HeroUmkmMobile({ content }: { content: TenantHeroContent }) {
+  return (
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+      <div className="relative z-10 container mx-auto px-6 text-center flex flex-col items-center">
+        <h1 className="text-4xl font-black tracking-tight text-white leading-tight mb-6">
+          {content.title}
+        </h1>
+        <p className="text-lg text-white/80 leading-relaxed max-w-lg mb-10">
+          {content.subtitle}
+        </p>
+        <a
+          href={content.ctaHref}
+          className="w-full inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full active:scale-95 transition-all shadow-xl shadow-primary/20"
+        >
+          {content.ctaText}
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function HeroUmkmTablet({ content }: { content: TenantHeroContent }) {
+  return (
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+      <div className="relative z-10 container mx-auto px-8 text-center flex flex-col items-center">
+        <h1 className="text-6xl font-black tracking-tight text-white leading-[1.1] mb-6 max-w-3xl">
+          {content.title}
+        </h1>
+        <p className="text-xl text-white/80 leading-relaxed max-w-2xl mb-12">
+          {content.subtitle}
+        </p>
+        <a
+          href={content.ctaHref}
+          className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground font-bold rounded-full active:scale-95 transition-all shadow-xl shadow-primary/20"
+        >
+          {content.ctaText}
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function HeroUmkmDesktop({ content }: { content: TenantHeroContent }) {
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={content.imageUrl} alt={content.title} className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
+      </div>
+      <div className="relative z-10 container mx-auto px-12">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold text-white mb-8">
+            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+            Discover Excellence
+          </div>
+          <h1 className="text-7xl font-black tracking-tight text-white leading-tight mb-8">
+            {content.title}
+          </h1>
+          <p className="text-2xl text-white/80 leading-relaxed font-light mb-12 max-w-2xl">
+            {content.subtitle}
+          </p>
+          <div className="flex gap-4">
+            <a
+              href={content.ctaHref}
+              className="inline-flex items-center justify-center px-10 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:scale-105 transition-all shadow-xl shadow-primary/20"
+            >
+              {content.ctaText}
+            </a>
+            <a
+              href="#about"
+              className="inline-flex items-center justify-center px-10 py-4 bg-white/10 text-white border border-white/20 font-bold rounded-full hover:bg-white/20 transition-all backdrop-blur-md"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HeroUmkm({ content }: { content: TenantHeroContent }) {
+  const device = useDeviceViewport();
+  if (device === "mobile") return <HeroUmkmMobile content={content} />;
+  if (device === "tablet") return <HeroUmkmTablet content={content} />;
+  return <HeroUmkmDesktop content={content} />;
+}
+
 // -- Component Map ------------------------------------------------------------
 // This is the heart of the variant pattern. The map is typed so TypeScript
 // will error if a variant key doesn't match TenantLayout["heroStyle"].
@@ -281,6 +381,7 @@ const HERO_VARIANTS: Record<
   split: HeroSplit,
   centered: HeroCentered,
   minimal: HeroMinimal,
+  umkm: HeroUmkm,
 };
 
 // -- Default Fallback ---------------------------------------------------------

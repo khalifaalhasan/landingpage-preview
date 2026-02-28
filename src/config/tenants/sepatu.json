@@ -20,11 +20,11 @@
     "fontFamily": "'Inter', sans-serif"
   },
   "layout": {
-    "heroStyle": "centered",
+    "heroStyle": "umkm",
     "navbarStyle": "center",
-    "featuresStyle": "grid",
-    "collectionStyle": "grid",
-    "aboutStyle": "split",
+    "featuresStyle": "umkm",
+    "collectionStyle": "umkm",
+    "aboutStyle": "umkm",
     "footerStyle": "standard"
   },
   "navigation": [

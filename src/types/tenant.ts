@@ -34,11 +34,11 @@ export interface TenantTheme {
  * that reads it from configuration.
  */
 export interface TenantLayout {
-  heroStyle: "split" | "centered" | "minimal";
+  heroStyle: "split" | "centered" | "minimal" | "umkm";
   navbarStyle: "center" | "left" | "minimal";
-  featuresStyle: "grid" | "list";
-  collectionStyle: "grid" | "carousel";
-  aboutStyle: "split" | "story";
+  featuresStyle: "grid" | "list" | "umkm";
+  collectionStyle: "grid" | "carousel" | "umkm";
+  aboutStyle: "split" | "story" | "umkm";
   footerStyle: "standard" | "minimal";
 }
 
