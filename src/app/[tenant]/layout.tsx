@@ -102,7 +102,7 @@ export default async function TenantLayout({ children, params }: TenantLayoutPro
       </div>
 
       {/* Inject Floating Layout Customizer */}
-      <LayoutCustomizer />
+      <LayoutCustomizer activeLayout={mergedLayout} />
     </div>
   );
 }

@@ -36,9 +36,17 @@ const PRESETS: Record<string, Partial<TenantLayout>> = {
     aboutStyle: "split",
     footerStyle: "minimal",
   },
+  immersive: {
+    navbarStyle: "center",
+    heroStyle: "umkm",
+    featuresStyle: "umkm",
+    collectionStyle: "umkm",
+    aboutStyle: "umkm",
+    footerStyle: "standard",
+  },
 };
 
-export default function LayoutCustomizer() {
+export default function LayoutCustomizer({ activeLayout }: { activeLayout?: TenantLayout }) {
   const [isOpen, setIsOpen] = useState(false);
   const [overrides, setOverrides] = useState<Partial<TenantLayout>>({});
   const [previewDevice, setPreviewDevice] = useState<PreviewDevice>("desktop");
@@ -205,6 +213,19 @@ export default function LayoutCustomizer() {
                 <span className="block text-xs text-foreground/60">Large typography, radial glows</span>
               </div>
             </button>
+
+            <button 
+              onClick={() => applyPreset('immersive')}
+              className="flex items-center gap-3 p-3 rounded-xl border border-foreground/10 hover:border-primary/50 hover:bg-primary/5 transition-all text-left group"
+            >
+              <div className="p-2 bg-foreground/5 rounded-lg group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="block font-semibold text-foreground text-sm">Immersive</span>
+                <span className="block text-xs text-foreground/60">Full image backgrounds, vibrant blocks</span>
+              </div>
+            </button>
           </div>
         </div>
 
@@ -267,7 +288,7 @@ export default function LayoutCustomizer() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">Navbar Variant</label>
                 <select 
-                  value={overrides.navbarStyle || ""} 
+                  value={overrides.navbarStyle || activeLayout?.navbarStyle || ""} 
                   onChange={(e) => updateIndividual("navbarStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
@@ -281,7 +302,7 @@ export default function LayoutCustomizer() {
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">Hero Variant</label>
                 <select 
-                  value={overrides.heroStyle || ""} 
+                  value={overrides.heroStyle || activeLayout?.heroStyle || ""} 
                   onChange={(e) => updateIndividual("heroStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
@@ -289,52 +310,56 @@ export default function LayoutCustomizer() {
                   <option value="centered">Centered 3D Showcase</option>
                   <option value="split">Split Content & Image</option>
                   <option value="minimal">Minimal Typography</option>
+                  <option value="umkm">Immersive (Full Image)</option>
                 </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">Features Variant</label>
                 <select 
-                  value={overrides.featuresStyle || ""} 
+                  value={overrides.featuresStyle || activeLayout?.featuresStyle || ""} 
                   onChange={(e) => updateIndividual("featuresStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
                   <option value="" disabled>Select variant...</option>
                   <option value="grid">2x2 Grid Highlights</option>
                   <option value="list">Staggered List Blocks</option>
+                  <option value="umkm">Immersive (Solid Brand)</option>
                 </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">Collection Variant</label>
                 <select 
-                  value={overrides.collectionStyle || ""} 
+                  value={overrides.collectionStyle || activeLayout?.collectionStyle || ""} 
                   onChange={(e) => updateIndividual("collectionStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
                   <option value="" disabled>Select variant...</option>
                   <option value="grid">Masonry Grid</option>
                   <option value="carousel">Horizontal Carousel</option>
+                  <option value="umkm">Immersive (Clean Cards)</option>
                 </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">About Variant</label>
                 <select 
-                  value={overrides.aboutStyle || ""} 
+                  value={overrides.aboutStyle || activeLayout?.aboutStyle || ""} 
                   onChange={(e) => updateIndividual("aboutStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
                   <option value="" disabled>Select variant...</option>
                   <option value="split">Image & Content Split</option>
                   <option value="story">Longform Story with Background</option>
+                  <option value="umkm">Immersive (Full Image)</option>
                 </select>
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-foreground/80">Footer Variant</label>
                 <select 
-                  value={overrides.footerStyle || ""} 
+                  value={overrides.footerStyle || activeLayout?.footerStyle || ""} 
                   onChange={(e) => updateIndividual("footerStyle", e.target.value)}
                   className="w-full bg-foreground/5 border border-foreground/10 text-sm rounded-lg p-2 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-foreground"
                 >
